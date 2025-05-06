@@ -1,3 +1,3 @@
 fastapi
 uvicorn[standard]
-pywebpush          # ← Push 通知を使う予定なら
+pywebpush         
