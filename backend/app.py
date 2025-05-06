@@ -2,7 +2,8 @@
 from fastapi import FastAPI, BackgroundTasks
 from pydantic import BaseModel
 from datetime import datetime, timedelta
-from your_scheduler import next_reviews, send_push
++ from .your_scheduler import schedule_reviews as next_reviews, send_push
+
 
 app = FastAPI()
 
