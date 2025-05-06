@@ -1,24 +1,10 @@
-// Service Worker を登録
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js');
-}
-
-// バックエンド API のベース URL
-const API = 'https://scheduler-api.onrender.com';
-
-// 復習データを取りに行く関数
 async function fetchReviews() {
-  const items = JSON.parse(localStorage.getItem('schedule') || '[]');
-
-  const res = await fetch(`${API}/api/review`, {      // ← ここを絶対 URL に
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(items),
-  });
-
-  const data = await res.json();
-  render(data);
+    const history = JSON.parse(localStorage.getItem("studyHistory") || "[]");
+    const res = await fetch("/api/review", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(history),
+    });
+    const { due_items } = await res.json();
+    renderReviewList(due_items);
 }
-
-// ページ読み込み時に呼び出す例
-window.addEventListener('DOMContentLoaded', fetchReviews);
