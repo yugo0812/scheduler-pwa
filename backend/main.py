@@ -1,6 +1,6 @@
 # backend/main.py
 from fastapi import FastAPI
-from your_scheduler import schedule_reviews
+from .your_scheduler import schedule_reviews
 
 app = FastAPI()
 
